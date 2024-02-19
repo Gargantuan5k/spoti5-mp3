@@ -1,11 +1,10 @@
 from __future__ import print_function, unicode_literals
-from PyInquirer import prompt
-from examples import custom_style_2
 from prompt_toolkit.validation import Validator, ValidationError
 from spotify_handler import get_tracks_from_playlist
 import yt_handler
 from pprint import pprint
 import os
+import questionary
 from tkinter import Tk
 from tkinter import filedialog
 
@@ -21,54 +20,37 @@ def get_from_file(fname):
 
 
 def main_menu_prompt():
-    question = {
-        'type': 'list',
-        'name': 'main_menu',
-        'message': 'Choose a Menu Option:',
-        'choices': [
+    ans = questionary.select(
+        "Choose a menu option:",
+        choices= [
             'I have a Spotify Playlist Link',
-            {
-                'name': 'I have a Spotify Song Link',
-                'disabled': 'Coming Soon!'
-            },
-            {
-                'name': 'Use GUI/WebApp Mode',
-                'disabled': 'Coming Soon!'
-            },
+            # 'I have a Spotify Song Link'
+            # 'I want to use the GUI version',
             'I need help using this!',
             'Exit'
         ]
-    }
-    ans = prompt(question, style=custom_style_2)
+    ).ask()
+    
     return ans
 
 
 def link_prompt(case="pl"):
     if case == 'pl':
-        question = {
-            'type': 'input',
-            'name': 'pl_lnk',
-            'message': 'Enter the Playlist Link:'
-        }
-        lpr_ans = prompt(question, style=custom_style_2)
-        return lpr_ans['pl_lnk']
+        pl_lnk = questionary.text('Enter your Playlist Link:').ask() # TODO Add validation
+        return pl_lnk
     
     elif case == 'sl':
         pass # TODO direct song link support
 
 
 def tracks_to_get_prompt(track_list):
-    question2 = {
-        'type': 'checkbox',
-        'qmark': '🎵',
-        'message': 'Select Songs to Download:',
-        'name': 'track_list',
-        'choices': [{'name': f"({idx+1}) {track[0]} (ARTIST: {track[1]}, ALBUM: {track[2]})"} for idx, track in enumerate(track_list)],
-        'validate': lambda ans2: 'Choose at least one song!' if len(ans2) == 0 else True
-    }
+    ans2 = questionary.checkbox(
+        "Select Songs to Download",
+        choices=[
+            f"({idx+1}) {track[0]} (ARTIST: {track[1]}, ALBUM: {track[2]})" for idx, track in enumerate(track_list)
+            ]
+    ).ask()
 
-    os.system('cls')
-    ans2 = prompt(question2, style=custom_style_2)['track_list']
     res = []
     for i in ans2:
         idx_str = ''
@@ -90,15 +72,11 @@ def get_yt(tracks_to_get):
         for idx, vobj in enumerate(v):
             possible_titles.append(f'({idx+1}) {vobj["title"]} - {vobj["channel"]}')
 
-        question = {
-            'type': 'list',
-            'name': 'track',
-            'message': f'Choose the closest matching track name for track number {k+1} [{tracks_to_get[k][1]} - {tracks_to_get[k][0]}]:',
-            'choices': possible_titles
-        }
-
         os.system('cls')
-        ans = prompt(question, style=custom_style_2)['track']
+        ans = questionary.select(
+            f'Choose the closest matching track name for track number {k+1} [{tracks_to_get[k][1]} - {tracks_to_get[k][0]}]:',
+            choices=possible_titles
+        ).ask()
 
         idx_str = ''
         for i in ans:
@@ -126,7 +104,7 @@ def main_menu():
         try:
             os.system('cls')
             print(get_from_file('spoti5-mp3.txt'))
-            menu_pr_ans = main_menu_prompt()['main_menu']
+            menu_pr_ans = main_menu_prompt()
 
             match menu_pr_ans:
                 case 'I have a Spotify Playlist Link':
