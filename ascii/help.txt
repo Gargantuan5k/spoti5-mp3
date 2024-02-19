@@ -1,0 +1,65 @@
+< Need help? >
+ ------------- 
+\                             .       .
+ \                           / `.   .' " 
+  \                  .---.  < ?  > < ?  >  .---.
+   \                 |  ? \  \ - ~ ~ - /  /  ? |
+         _____          ..-~             ~-..-~
+        | ??? |   \~~~\.'                    `./~~~/
+       ---------   \__/                        \__/
+      .'  O    \     /               /       \  " 
+     (_____,    `._.'               |         }  \/~~~/
+      `----.          /       }     |        /    \__/
+            `-.      |       /      |       /      `. ,~~|
+                ~-.__|      /_ - ~ ^|      /- _      `..-'   
+                     |      /        |     /     ~-.     `-. _  _  _
+                     |_____|        |_____|         ~ - . _ _ _ _ _>
+
+Welcome to spoti5-mp3!
+
+This is a simple application that allows you to download any Spotify song as an MP3 or MP4 file, as long as you have the Spotify Playlist Link.
+
+?? How do I use spoti5-mp3 ??
+-----------------------------
+- First, you will need to find a spotify playlist you want to download from. Copy the link [it looks something like this: https://https://open.spotify.com/playlist/...]
+- In the main menu, select the option "I have a Spotify Playlist Link". When prompted, paste the copied link in the given space. Press ENTER.
+- In a few seconds, you will be prompted "Select all the songs in this playlist? [Y/n]. Press Y or N as required. 
+- If you selected 'n', you'll be given a list of all the songs in the playlist.
+- Use up and down arrow keys to move around in the list. Press <space> to select a song that you want to download, <space> again to deselect.
+  Press <a> to select all the songs, and <i> to invert your selection.
+  When done, press ENTER.
+- Next, you will be prompted to select a "track" for each of the songs. Select by pressing ENTER as applicable.
+- Finally, you will be asked a destination to store the files you just downloaded. Select from the File Explorer window and rpess OK.
+- Once the songs are finished downloading, you may press 'Y' at the next prompt to download more playlists, or 'n' to exit.
+
+?? I want to download a single song, I have a spotify song link. ??
+-------------------------------------------------------------------
+This feature is in development and coming soon!
+
+?? Is there a GUI available? ??
+-------------------------------
+A web app will be built in the near future.
+
+?? I'm getting an error that says "unexpected renderer encountered." ??
+-----------------------------------------------------------------------
+Don't worry! This is a known issue, and won't affect your downloads, searches or files. Working on a fix!
+
+?? I'm getting some other error / the app keeps crashing on me ??
+-----------------------------------------------------------------
+Please open an issue on GitHub (https://github.com/Gargantuan5k/spoti5-mp3/issues) and I will get to it.
+
+
+?? I want to quit the app in between. ??
+----------------------------------------
+Just press Ctrl+C! This will take you to the menu screen, with the Exit button.
+
+ ______________________________________
+< Press ENTER to exit the help screen. >
+ -------------------------------------- 
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||--WWW |
+                ||     ||
+
+                                 

@@ -2,6 +2,22 @@ from pytube import YouTube, Search
 from pprint import pprint
 import os
 
+
+def percent(self, tem, total):
+        perc = (float(tem) / float(total)) * float(100)
+        return perc
+
+
+def progress_function(self,stream, chunk,file_handle, bytes_remaining):
+
+    size = stream.filesize
+    p = 0
+    while p <= 100:
+        progress = p
+        print(str(p)+'%')
+        p = percent(bytes_remaining, size)
+
+
 def search(song, artist, album=None, destination='.'):
     yt_details_list = []
     yt_list = []
@@ -13,7 +29,7 @@ def search(song, artist, album=None, destination='.'):
     ids = [i.video_id for i in res.results]
     for i in ids:
         link = f"https://www.youtube.com/watch?v={i}"
-        yt = YouTube(link)
+        yt = YouTube(link, on_progress_callback=progress_function)
         yt_details_dict = {
             'title': yt.title,
             'channel': yt.author,
